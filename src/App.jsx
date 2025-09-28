@@ -8,7 +8,7 @@ import History from './components/History';
 import './App.css'
 
 function App() {
-  const isAuthencated =false;
+  const isAuthencated =true;
   const authencatedContent = (
     <>
       <Stats/>
