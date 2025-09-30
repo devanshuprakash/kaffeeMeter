@@ -1,7 +1,11 @@
 import { coffeeOptions } from "../utils";
 import { useState } from "react";
+import Modal from "./Modal";
+import Authentication from "./Authentication";
 
-export default function CoffeeForm(){
+export default function CoffeeForm(props){
+    const {isAuthencated}=props 
+    const [showModal,setshowModal]=useState(false);
     const [selectedCoffee,setselectedCoffee ]=useState(null);
     const [showCoffeeTypes,setShowCoffeeTypes]=useState(false);
     const [coffeeCost,setCoffeeCost] = useState(0);
@@ -9,10 +13,17 @@ export default function CoffeeForm(){
     const [min,setMin] = useState(0)
 
     function handleSumbitForm(){
-        console.log(selectedCoffee,coffeeCost,hour,min)
+        if(!isAuthencated){
+        setshowModal(true)
+        return
     }
+    console.log(selectedCoffee,coffeeCost,hour,min)}
+  
     return(
         <>
+        {showModal && (<Modal handleClsoeModal={()=>{setshowModal(false)}}>
+                <Authentication/>
+            </Modal>)}
         <div className="section-header">
             <i className="fa-solid fa-pencil" />
             <h2>Strat Traking Today</h2>

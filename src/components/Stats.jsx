@@ -21,6 +21,7 @@ export default function Stats(){
    caffeineLevel<statusLevels['medium'].maxLevel ? 'medium':'high';
     return(
         <>
+        
         <div className="section-header">
             <i className="fa-solid fa-chart-simple" />
             <h2>Stats</h2>
@@ -42,7 +43,7 @@ export default function Stats(){
             <Statscard title="Daily Cost ($)">
                  <p>$<span className="stat-text">{stats.daily_cost}</span></p>
             </Statscard>
-            <Statscard title="Daily Caffeine ($)">
+            <Statscard title="Total Cost ($)">
                  <p>$<span className="stat-text">{stats.total_cost}</span> </p>
             </Statscard>
 

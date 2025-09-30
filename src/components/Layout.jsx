@@ -1,5 +1,11 @@
+import { useState } from "react";
+
+import Authentication from "./Authentication";
+import Modal from "./Modal";
+
 export default function Layout(props){
     const {children} = props;
+    const [showModal,setshowModal]=useState(false);
     const header = (
         <header>
             <div>
@@ -10,7 +16,7 @@ export default function Layout(props){
                     <p>Logout</p>
                 </button>
          
-                <button >
+                <button  onClick={()=>{setshowModal(true)}}>
                     <p>Sign up free</p>
                     <i className="fa-solid fa-mug-hot"></i>
                 </button>
@@ -20,12 +26,15 @@ export default function Layout(props){
 
     const footer = (
         <footer>
-            <p><span className="text-gradient">KaffeeMeter</span> was made by <a target="_blank" href="https://www.smoljames.com">Smoljames</a> <br />using the <a href="https://www.fantacss.smoljames.com" target="_blank">FantaCSS</a> design library.<br />Check out the project on <a target="_black" href="https://www.github.com/jamezmca/reactjs-full-course">GitHub</a>!</p>
-        </footer>
+            <p><span className="text-gradient">KaffeeMeter</span> was made by <span className="text-gradient">Devanshu Prakash</span></p> <br />
+            </footer>
     )
 
   return (
     <>
+    {showModal&&(<Modal handleClsoeModal={()=>{setshowModal(false)}}>
+        <Authentication/>
+    </Modal>)}
       {header}
       <main>
         {children}

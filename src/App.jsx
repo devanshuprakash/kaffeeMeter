@@ -8,7 +8,7 @@ import History from './components/History';
 import './App.css'
 
 function App() {
-  const isAuthencated =true;
+  const isAuthencated =false;
   const authencatedContent = (
     <>
       <Stats/>
@@ -22,7 +22,7 @@ function App() {
   return (
     <Layout>
       <Hero/>
-      <CoffeeForm/>
+      <CoffeeForm isAuthencated={isAuthencated}/>
       {(isAuthencated) && (authencatedContent)}
     </Layout>
     
