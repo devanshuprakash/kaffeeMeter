@@ -1,4 +1,6 @@
-import { useState } from "react"
+import { useState } from 'react'
+import { useAuth } from '../../context/AuthContext'
+
 export default function Authentication(props) {
     const { handleCloseModal } = props
     const [isRegistration, setIsRegistration] = useState(false)
@@ -7,9 +9,31 @@ export default function Authentication(props) {
     const [isAuthenticating, setIsAuthenticating] = useState(false)
     const [error, setError] = useState(null)
 
- async function handleAuthenticate(){
+    const { signup, login } = useAuth()
 
- }
+    async function handleAuthenticate() {
+        if (!email || !email.includes('@') || !password || password.length < 6 || isAuthenticating) { return }
+        try {
+            setIsAuthenticating(true)
+            setError(null)
+
+            if (isRegistration) {
+                // register a user
+                await signup(email, password)
+            } else {
+                // login a user
+                await login(email, password)
+            }
+            handleCloseModal()
+        } catch (err) {
+            console.log(err.message)
+            setError(err.message)
+        } finally {
+            setIsAuthenticating(false)
+        }
+
+    }
+
     return (
         <>
             <h2 className="sign-up-text">{isRegistration ? 'Sign Up' : 'Login'}</h2>
