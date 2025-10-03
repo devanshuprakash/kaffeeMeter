@@ -58,7 +58,7 @@ export default function CoffeeForm(props) {
             setHour(0)
             setMin(0)
             setCoffeeCost(0)
-        } catch (err) {
+        } catch (err) { 
             console.log(err.message)
         }
     }
@@ -103,8 +103,7 @@ export default function CoffeeForm(props) {
                 <select onChange={(e) => {
                     setSelectedCoffee(e.target.value)
                 }} id="coffee-list" name="coffee-list">
-                    <option value={null}>Select type</option>
-                    {coffeeOptions.map((option, optionIndex) => {
+                     {coffeeOptions.map((option, optionIndex) => {
                         return (
                             <option value={option.name} key={optionIndex}>
                                 {option.name} ({option.caffeine}mg)
